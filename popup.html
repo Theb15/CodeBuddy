@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Buddy Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 400px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 0;
+    }
+
+    .container {
+      background: white;
+      margin: 0;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    select, input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .info {
+      background: #e7f3ff;
+      border-left: 4px solid #2196F3;
+      padding: 12px;
+      margin: 15px 0;
+      font-size: 13px;
+      border-radius: 4px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .status {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 14px;
+      display: none;
+    }
+
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .links {
+      padding: 15px 20px;
+      background: #f8f9fa;
+      border-top: 1px solid #e9ecef;
+      text-align: center;
+    }
+
+    .links a {
+      color: #667eea;
+      text-decoration: none;
+      font-size: 13px;
+      margin: 0 10px;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .toggle-password {
+      position: relative;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🤖 Code Buddy</h1>
+      <p>Configure your AI assistant</p>
+    </div>
+
+    <div class="content">
+      <div class="form-group">
+        <label for="apiProvider">AI Provider</label>
+        <select id="apiProvider">
+          <option value="groq">Groq (Recommended - Faster)</option>
+          <option value="gemini">Google Gemini</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="groqGroup">
+        <label for="groqKey">Groq API Key</label>
+        <div class="toggle-password">
+          <input type="password" id="groqKey" placeholder="gsk_...">
+          <span class="toggle-icon" onclick="togglePassword('groqKey')">👁️</span>
+        </div>
+        <div class="info">
+          Get your free API key from <a href="https://console.groq.com" target="_blank">console.groq.com</a>
+        </div>
+      </div>
+
+      <div class="form-group" id="geminiGroup" style="display: none;">
+        <label for="geminiKey">Gemini API Key</label>
+        <div class="toggle-password">
+          <input type="password" id="geminiKey" placeholder="AIza...">
+          <span class="toggle-icon" onclick="togglePassword('geminiKey')">👁️</span>
+        </div>
+        <div class="info">
+          Get your free API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a>
+        </div>
+      </div>
+
+      <button class="btn" id="saveBtn">Save Configuration</button>
+      <div class="status" id="status"></div>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/yourusername/code-buddy" target="_blank">GitHub</a>
+      <a href="#" id="testBtn">Test Connection</a>
+      <a href="#" id="clearBtn">Clear Data</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
